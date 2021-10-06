@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BG changer</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #8c218d;
+            color: black;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+        }
+        .logo h1 {
+            padding: 0 1em;
+            line-height: 2;
+        }
+        nav ul {
+            display: flex;
+
+        }
+        nav li {
+            list-style: none;
+            padding: 2em;
+        }
+        .menu-icons {
+            display: none;
+            position: absolute;
+            right: 2em;
+        }
+        #open {
+            line-height: 4;
+        }
+    
+        @media only screen and (max-width: 550px) {
+            body {
+                width: 550px;
+                max-width: 100%;
+            }
+            .logo h1 {
+                padding: 0;
+            }
+            nav li {
+                padding: 2em 0;
+            }
+            nav ul {
+                display: none;
+            }
+            .menu-icons {
+                display: block;
+            }
+            .container.active ul {
+                display: block;
+                position: absolute;
+                right: 0;
+                top: 5em;
+                background-color: #eb3007;
+                padding: 1em 3em;
+                height: 70vh;
+                line-height: 3;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <h1>Blogr</h1>
+        </div>
+        <nav>
+            <div class="container">
+            <ul>
+                <div class="menu-icons" id="close">
+                <img src="./icon-close.svg" alt="">
+                </div>
+                <li>Home</li>
+                <li>About</li>
+                <li>Contact</li>
+                <li>Portfolio</li>
+            </ul>
+        </div>
+        </nav>
+                <div class="menu-icons" id="open">
+                    <img src="./icon-hamburger.svg" alt="">
+                </div>
+          
+
+       
+    </header>
+    <button>Click Me!</button>
+    <label for="bg">Background:</label>
+    <select name="colors" id="color" onchange="changeBg(this)">
+        <option value="red">RED</option>
+        <option value="blue">BLUE</option>
+        <option value="green">GREEN</option>
+    </select>
+    <script>
+        const btn = document.querySelector('button')
+
+        document.body.style.backgroundColor = bgcolor()
+        btn.addEventListener('click', function() {
+            document.body.style.backgroundColor = bgcolor()
+            console.log("button clicked");
+        })
+
+        function bgcolor() {
+            return "#" + Math.random().toString(16).substr(-6)
+        }
+        
+        console.log(bgcolor());
+
+        function changeBg(x) {
+            document.body.style.backgroundColor = x.value
+        }
+
+
+
+        const open = document.getElementById('open')
+        const close = document.getElementById('close')
+        const nav = document.querySelector('.container')
+
+
+        open.addEventListener('click', function() {
+            nav.classList.add('active')
+        })
+        close.addEventListener('click', () => {
+            nav.classList.remove("active")
+        })
+    </script>
+</body>
+</html>
